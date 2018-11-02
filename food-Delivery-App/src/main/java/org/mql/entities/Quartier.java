@@ -24,6 +24,5 @@ public class Quartier implements Serializable {
     private String nom;
     @ManyToOne
     private Ville ville;
-    @OneToMany(mappedBy = "quartier")
-	private List<Restaurant> restaurants;
+   
 }
