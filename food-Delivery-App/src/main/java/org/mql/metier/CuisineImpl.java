@@ -26,4 +26,16 @@ public class CuisineImpl implements ICuisineMetier {
 		cuisineRepository.save(cuisine);
 	}
 
+	@Override
+	public Cuisine findone(Long id) {
+		return cuisineRepository.findById(id).get();
+	}
+
+	@Override
+	public void supprimerCuisine(Long id) {
+		if (id == null)
+			throw new RuntimeException("Id est Invalide !!!!");
+		cuisineRepository.deleteById(id);
+	}
+
 }

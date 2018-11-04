@@ -14,27 +14,29 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form th:action="@{cuisines}" method="post">
-		<div class="container">
-			<div class="form-group">
-				<input type="text" name="nom" />
-				<button type="submit" class="btn btn-primary">save</button>
-			</div>
-		</div>
-	</form>
+<!-- 	<form th:action="@{cuisines}" method="post"> -->
+<!-- 		<div class="container"> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<input type="text" name="nom" /> -->
+<!-- 				<button type="submit" class="btn btn-primary">save</button> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</form> -->
 	<table class="table container">
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Nom</th>
+				<th>Prix</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="c:${cuisines}">
-				<td th:text="${c.id}"></td>
-				<td th:text="${c.nom}"></td>
-				<td><a th:href="@{cuisines/}+${c.id}">Edit</a></td>
-				<td><a th:href="@{cuisines/delete/}+${c.id}">Delete</a></td>
+			<tr th:each="p:${plates}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.nom}"></td>
+				<td th:text="${p.prix}"></td>
+<!-- 				<td><a th:href="@{cuisines/}+${c.id}">Edit</a></td> -->
+<!-- 				<td><a th:href="@{cuisines/delete/}+${c.id}">Delete</a></td> -->
 				<!-- 				<td th:href="@{cuisines/${c.id})">edit</td> -->
 			</tr>
 		</tbody>

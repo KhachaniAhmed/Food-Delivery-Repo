@@ -7,5 +7,7 @@ import org.mql.entities.Cuisine;
 public interface ICuisineMetier {
 	public List<Cuisine> getAllCuisine();
 	public void addCuisine(Cuisine cuisine);
+	public Cuisine findone(Long id);
+	public void supprimerCuisine(Long id);
 
 }
