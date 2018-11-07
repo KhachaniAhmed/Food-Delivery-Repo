@@ -8,7 +8,9 @@ public interface IRestaurantMetier {
 
 	public List<Restaurant> getAll();
 	
+	public Restaurant findOne(Long id);
+	
 	public void add(Restaurant restaurant);
 	
-	public void delete(Restaurant restaurant);
+	public void delete(Long id);
 }

@@ -5,7 +5,11 @@ import java.util.List;
 import org.mql.dao.RestaurantRepository;
 import org.mql.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@Transactional
 public class RestaurantImpl implements IRestaurantMetier {
 
 	@Autowired
@@ -22,9 +26,16 @@ public class RestaurantImpl implements IRestaurantMetier {
 	}
 
 	@Override
-	public void delete(Restaurant restaurant) {
-		// TODO Auto-generated method stub
+	public void delete(Long id) {
+		if (id == null)
+			throw new RuntimeException("Id est Invalide !!!!");
+		restaurantRepository.deleteById(id);
 		
+	}
+
+	@Override
+	public Restaurant findOne(Long id) {
+		return restaurantRepository.findById(id).get();
 	}
 
 }
