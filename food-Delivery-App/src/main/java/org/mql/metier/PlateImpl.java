@@ -43,4 +43,9 @@ public class PlateImpl implements IPlateMetier {
 		return plateRepository.findAll();
 	}
 
+	@Override
+	public List<Plate> findByMenuId(Long idMenu) {
+		return plateRepository.findByMenuId(idMenu);
+	}
+
 }
