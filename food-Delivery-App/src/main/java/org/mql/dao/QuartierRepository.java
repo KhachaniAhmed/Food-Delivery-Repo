@@ -14,4 +14,5 @@ public interface QuartierRepository extends JpaRepository<Quartier, Long> {
 	public List<Quartier> rerchercheParId(@Param("x")Long id);
 	public Quartier findQurtierByNom(String nom);
 
+	public List<Quartier> findByVilleId(Long villeId);
 }

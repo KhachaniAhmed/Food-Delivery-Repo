@@ -30,4 +30,30 @@ public class RestaurantImpl implements IRestaurantMetier {
 		return null;
 	}
 
+	@Autowired
+	private RestaurantRepository restaurantRepository;
+	
+	@Override
+	public List<Restaurant> getAll() {
+		return restaurantRepository.findAll();
+	}
+	
+	@Override
+	public void add(Restaurant restaurant) {
+		restaurantRepository.save(restaurant);
+	}
+
+	@Override
+	public void delete(Long id) {
+		if (id == null)
+			throw new RuntimeException("Id est Invalide !!!!");
+		restaurantRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public Restaurant findOne(Long id) {
+		return restaurantRepository.findById(id).get();
+	}
+
 }

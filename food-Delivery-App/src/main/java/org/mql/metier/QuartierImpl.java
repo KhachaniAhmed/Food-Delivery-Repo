@@ -2,6 +2,7 @@ package org.mql.metier;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import org.aspectj.weaver.NewParentTypeMunger;
 import org.mql.dao.QuartierRepository;
 import org.mql.dao.VilleRepository;
@@ -12,6 +13,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+=======
+import org.mql.dao.QuartierRepository;
+import org.mql.entities.Quartier;
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> refs/remotes/origin/master
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,6 +55,14 @@ public class QuartierImpl implements IQuartierMetier {
 	public Quartier getQuartierById(Long id) {
 
 		return quartierRepository.getOne(id);
+	}
+
+	@Autowired
+	private QuartierRepository quartierRepository;
+	@Override
+	public List<Quartier> getAllQuartiers(Long villeId) {
+		
+		return quartierRepository.findByVilleId(villeId);
 	}
 
 }

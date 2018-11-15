@@ -11,8 +11,14 @@ import org.springframework.data.repository.query.Param;
 
 
 public interface MenuRepository extends JpaRepository<Menu, Long> {
+<<<<<<< HEAD
 	public Menu findByNom(String nom);
 	@Query("select r from Menu r where r.restaurant.id=:x")
 	public List<Menu> rerchercheParId(@Param("x")Long id);
 	
+=======
+
+	public Menu findByRestaurantId(Long idRestaurant);
+
+>>>>>>> refs/remotes/origin/master
 }
