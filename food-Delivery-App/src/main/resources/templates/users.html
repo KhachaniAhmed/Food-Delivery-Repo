@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Restaurant</title>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid"></div>
+	</nav>
+	<form th:action="@{saveUser}" method="post">
+<div class="col col-md-6">
+		<div class="panel panel-success">
+			<div class="panel-heading">Nouveau utilisateur</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<span class="label label-info">Nom:</span> <input type="text"
+						name="nom" class="form-control" />
+				</div>
+				<div class="form-group">
+					<span class="label label-info">Prenom:</span> <input type="text"
+						name="prenom" class="form-control" />
+				</div>
+				<div class="form-group">
+					<span class="label label-info">Email:</span> <input type="text"
+						name="email" class="form-control" />
+				</div>
+				<div class="form-group">
+					<span class="label label-info">Mot de pass:</span> <input
+						type="text" name="password" class="form-control" />
+				</div>
+				<div class="form-group">
+					<span class="label label-info">Date Naissance:</span> <input
+						type="date" name="dateNaissance" class="form-control" />
+				</div>
+				<button class="glyphicon glyphicon-ok-circle btn btn-success"
+					type="submit"></button>
+
+			</div>
+
+
+
+		</div>
+		</div>
+		<div class="col col-md-6">
+			<div class="panel panel-success">
+				<div class="panel-heading">Votre ville:</div>
+				<div class="form-group panel-body">
+					<span class="label label-success">Ville</span> <input type="text"
+						name="nom" class="form-control" />
+				</div>
+			</div>
+			
+			<div class="panel panel-success">
+				<div class="panel-heading">Nom du quartier:</div>
+				<div class="form-group panel-body">
+					<span class="label label-warning">Quartier</span> <input type="text"
+						name="nom" class="form-control" />
+				</div>
+			</div>
+			
+			<div class="panel panel-success">
+				<div class="panel-heading">Info Adress:</div>
+				<div class="form-group panel-body">
+					<span class="label label-default">Adress</span> <input type="text"
+						name="infoAdresse" class="form-control" />
+				</div>
+			</div>
+		</div>
+
+	</form>
+</body>
+</html>

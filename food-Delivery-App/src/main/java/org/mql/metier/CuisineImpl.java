@@ -38,4 +38,10 @@ public class CuisineImpl implements ICuisineMetier {
 		cuisineRepository.deleteById(id);
 	}
 
+	@Override
+	public Cuisine cuisineByNom(String nom) {
+		// TODO Auto-generated method stub
+		return cuisineRepository.findCuisineByNom(nom);
+	}
+
 }

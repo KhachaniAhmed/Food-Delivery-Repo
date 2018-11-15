@@ -14,7 +14,7 @@ public class UserMetierImpl implements IUserMetier {
 	private UserRepository userRepository;
 
 	@Override
-	public void ajouterUser(User user) {
+	public void saveUser(User user) {
 		if (user == null)
 			throw new RuntimeException("user invalide ");
 		userRepository.save(user);

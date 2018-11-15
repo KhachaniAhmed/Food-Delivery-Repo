@@ -1,5 +1,16 @@
 package org.mql.metier;
 
-public interface IQuartierMetier {
+import java.util.List;
 
+import org.mql.entities.Quartier;
+import org.mql.entities.Ville;
+import org.springframework.data.domain.Page;
+
+public interface IQuartierMetier {
+	public List<Quartier> listequartie();
+	public List<Quartier> quartierByVille(Long idVille);
+	public Quartier quartierByNom(String nom);
+	public void saveQuartier(Quartier quartier);
+	public Quartier getQuartierById(Long id);
+	
 }

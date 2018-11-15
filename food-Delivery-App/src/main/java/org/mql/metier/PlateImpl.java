@@ -42,5 +42,11 @@ public class PlateImpl implements IPlateMetier {
 	public List<Plate> getAllPlates() {
 		return plateRepository.findAll();
 	}
+ 
+	@Override
+	public Plate plateBynom(String nom) {
+		// TODO Auto-generated method stub
+		return plateRepository.findPlateByNom(nom);
+	}
 
 }

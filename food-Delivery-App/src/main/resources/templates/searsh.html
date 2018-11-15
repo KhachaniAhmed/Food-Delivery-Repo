@@ -1,0 +1,39 @@
+<!DOCTYPE  >
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+		<a th:href="@{/restaurantchoix}">Choisir une menu</a>
+		<a th:href="@{/restaurantchoix}">Enregestrer un utilisateur</a>
+		<a th:href="@{/restaurantchoix}">Donner une asresse </a>
+		<a th:href="@{/restaurantchoix}">Choisir une menu</a>
+		<a th:href="@{/restaurantchoix}">Choisir une menu</a>
+		</div>
+	</nav>
+	<select class="form-control container">
+		<option th:each="v:${villes}" th:value="${v.id}" th:utext="${v.nom}">
+
+		</option>
+	</select>
+	<p th:text="${red}"></p>
+	<p th:each="r:${red}" th:text="${r.nom}"></p>
+	<select class="form-control container"  >
+		<option   th:utext="${r.nom}" th:value="${r.id}" th:each="r:${red}">
+
+		</option>
+	</select>
+	
+
+</body>
+</html>

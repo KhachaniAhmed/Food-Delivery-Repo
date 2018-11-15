@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Restaurant</title>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid"></div>
+	</nav>
+	<div class="container" th:if="${restaurant}">
+		<div class="panel panel-success">
+			<div class="panel-heading">Plus proche de vous</div>
+			<div class="panel-body">
+				<span class="label label-default">Nom du restaurant </span>
+				<h1 th:each="re:${restaurant}" th:text="${re.nom}"></h1>
+				<span class="label label-info">Menu préparer </span>
+				<h1 th:each="m:${menu}" th:text="${m.id}"></h1>
+			</div>
+		</div>
+		
+		
+	</div>
+</body>
+</html>

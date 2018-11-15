@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Restaurant</title>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid"></div>
+	</nav>
+<ul class="nav nav-tabs">
+ <li role="presentation" class="active"><a th:href="@{/userInformation}">Programme de formation</a></li>
+ <li role="presentation"><a th:href="@{/adminRestaurant}">Public</a></li>
+ <li role="presentation"><a th:href="@{/vuesearsh}">Objectifs</a></li>
+</ul>
+</body>
+</html>

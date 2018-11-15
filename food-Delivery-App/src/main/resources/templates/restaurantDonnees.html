@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Restaurant</title>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid"></div>
+	</nav>
+	<!-- 	<form th:action="@{saveVilleAndQuartier}" method="post"></form> -->
+	
+	
+	
+	<div class="col col-md-6">
+		<div class="panel panel-success">
+			<div class="panel-heading">Restaurant & Menu:</div>
+			<div class="form-group panel-body">
+				<form th:action="@{saveRestaurantAndMenu}" method="post">
+					<!-- 					<div class="form-group"> -->
+					<!-- 						<span class="label label-info">Nom restaurant:</span> <input -->
+					<!-- 							type="text" name="nom" class="form-control" /> -->
+					<!-- 					</div> -->
+
+					<!-- 					<span class="label label-default">Adress information</span>  -->
+					<!-- 					 <input type="text" name="infoAdresse" class="form-control" />  -->
+					<span class="label label-danger">Restaurant</span> <select
+						class="form-control" name="nomRestaurant">
+						<option th:each="r:${restaurants}" th:value="${r.nom}"
+							th:utext="${r.nom}"></option>
+					</select>
+					<!-- 						<input type="text" -->
+					<!-- 						name="nom" class="form-control" /> -->
+					<span class="label label-success">Menu</span> <input
+						type="text" name="nomMenu" class="form-control" />
+						
+							<span class="label label-success">Restaurant</span> <input
+						type="text" name="nomRestaurant" class="form-control" />
+						<span class="label label-warning">Adresseinfo</span> <input
+						type="text" name="nomAdresse" class="form-control" />
+						<span class="label label-warning">Quartier</span> <input
+						type="text" name="nomQuartier" class="form-control" />
+						
+						<span class="label label-danger">Ville</span> <select
+						class="form-control" name="nomVille">
+						<option th:each="v:${villes}" th:value="${v.nom}"
+							th:utext="${v.nom}"></option>
+					</select>
+					
+					<button class="glyphicon glyphicon-ok-circle btn btn-success"
+						type="submit"></button>
+				</form>
+			</div>
+		</div>
+		<!-- 			autre div -->
+	</div>
+	
+
+</body>
+</html>
