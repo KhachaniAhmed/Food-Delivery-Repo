@@ -30,8 +30,6 @@ public class RestaurantImpl implements IRestaurantMetier {
 		return null;
 	}
 
-	@Autowired
-	private RestaurantRepository restaurantRepository;
 	
 	@Override
 	public List<Restaurant> getAll() {

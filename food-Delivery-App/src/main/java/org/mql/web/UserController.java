@@ -1,6 +1,5 @@
 package org.mql.web;
 
-import org.hibernate.type.AdaptedImmutableType;
 import org.mql.entities.Adresse;
 import org.mql.entities.Quartier;
 import org.mql.entities.User;
@@ -24,16 +23,16 @@ public class UserController {
 	@Autowired
 	private IQuartierMetier iQuartierMetier;
 	@Autowired
-	private IAdresseMetier iAdresseMetier; 
-	
-	@RequestMapping(value="/userInformation",method = {RequestMethod.GET, RequestMethod.POST})
-	public String saveUser(Model model,User user,Ville ville,Adresse adresse,Quartier quartier) {
+	private IAdresseMetier iAdresseMetier;
+
+	@RequestMapping(value = "/userInformation", method = { RequestMethod.GET, RequestMethod.POST })
+	public String saveUser(Model model, User user, Ville ville, Adresse adresse, Quartier quartier) {
 		iQuartierMetier.saveQuartier(quartier);
-        iAdresseMetier.saveAdresse(adresse);
+		iAdresseMetier.saveAdresse(adresse);
 		iVilleMetier.saveVille(ville);
-		iUserMetier.saveUser(user); 
+		iUserMetier.saveUser(user);
 		model.addAttribute("users", user);
-		return"users";
+		return "users";
 	}
 
 }

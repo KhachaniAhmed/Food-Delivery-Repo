@@ -15,7 +15,6 @@ import org.mql.metier.IMenuMetier;
 import org.mql.metier.IPlateMetier;
 import org.mql.metier.IQuartierMetier;
 import org.mql.metier.IRestaurantMetier;
-import org.mql.metier.IUserMetier;
 import org.mql.metier.IVilleMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,8 +32,6 @@ public class RestaurantContr {
 
 	@Autowired
 	private IMenuMetier iMenuMetier;
-	@Autowired
-	private IUserMetier iUserMetier;
 	@Autowired
 	private IVilleMetier iVilleMetier;
 	@Autowired
@@ -73,14 +70,14 @@ public class RestaurantContr {
 	@RequestMapping(value = "/saveAdresse", method = { RequestMethod.GET, RequestMethod.POST })
 	public String saveAdresse(Model model, String nomQuartier) {
 		if (nomQuartier != null)
-		this.quartier = iQuartierMetier.getQuartierById(Long.parseLong(nomQuartier));
+			this.quartier = iQuartierMetier.getQuartierById(Long.parseLong(nomQuartier));
 		this.quartier.setVille(this.ville);
 		this.adresse.setQuartier(this.quartier);
-		
+
 		iAdresseMetier.saveAdresse(new Adresse(null, null, this.quartier));
-		Adresse adresseRest =iAdresseMetier.adresseByQuartier(this.quartier.getId());
-		System.out.println("*********************"+ adresseRest.getId());
-		iRestaurantMetier.addRestaurant(new Restaurant(null,this.restaurant.getNom(), null,null, adresseRest, null));
+		Adresse adresseRest = iAdresseMetier.adresseByQuartier(this.quartier.getId());
+		System.out.println("*********************" + adresseRest.getId());
+		iRestaurantMetier.addRestaurant(new Restaurant(null, this.restaurant.getNom(), null, null, adresseRest, null));
 		List<Ville> villes = iVilleMetier.getAllVilles();
 		model.addAttribute("villes", villes);
 		return "adminRestaurant";
@@ -131,6 +128,7 @@ public class RestaurantContr {
 		model.addAttribute("villes", villes);
 		return "adminRestaurant";
 	}
+
 	@RequestMapping(value = "/menu", method = { RequestMethod.GET, RequestMethod.POST })
 	public String saveMennu(Model model, @RequestParam String villeForm) {
 		boolean villeSelected = false;
