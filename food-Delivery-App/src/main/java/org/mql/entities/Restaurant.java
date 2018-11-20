@@ -28,16 +28,11 @@ public class Restaurant implements Serializable {
 	private String nom;
 	@OneToOne
 	private User adminRestau;
-	@OneToMany(mappedBy = "restaurant",fetch=FetchType.EAGER)
-	private List<Commande> commandes=new ArrayList<>();
+	@OneToMany(mappedBy = "restaurant")
+	private List<Commande> commandes;
 	@OneToOne
 	private Adresse adresse;
 	@OneToOne(mappedBy = "restaurant")
 	private Menu menu;
-	public Restaurant(Long id, String nom) {
-		super();
-		this.id = id;
-		this.nom = nom;
-	}
 	
 }

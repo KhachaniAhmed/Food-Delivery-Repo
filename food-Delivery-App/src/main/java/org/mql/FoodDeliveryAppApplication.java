@@ -34,14 +34,6 @@ public class FoodDeliveryAppApplication implements CommandLineRunner {
 	@Autowired
 	IPlateMetier iPlateMetier;
 
-	List<Commande> commandes = new ArrayList<>();
-	List<Plate> plates = new ArrayList<>();
-
-	// private IVilleMetier iVilleMetier;
-//	@Autowired
-//	private IQuartierMetier iQuartierMetier;
-//	@Autowired
-//	private IMenuMetier iMenuMetier;
 	public static void main(String[] args) {
 		SpringApplication.run(FoodDeliveryAppApplication.class, args);
 	}
