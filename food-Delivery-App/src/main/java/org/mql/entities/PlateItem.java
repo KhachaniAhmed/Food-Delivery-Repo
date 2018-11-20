@@ -15,16 +15,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlateItem implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Double prix;
+	private String nom;
 	@ManyToOne
 	private Cuisine cuisine;
 	@ManyToOne
 	private Plate plate;
+
+	
    }

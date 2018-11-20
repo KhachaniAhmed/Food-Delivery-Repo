@@ -22,6 +22,14 @@
 <!-- 			</div> -->
 <!-- 		</div> -->
 <!-- 	</form> -->
+<select>
+<option th:each="p:${plates}" th:value="${p.id}"
+
+th:utext="${p.nom}">
+
+</option>
+
+</select>
 	<table class="table container">
 		<thead>
 			<tr>

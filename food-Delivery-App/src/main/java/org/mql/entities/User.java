@@ -1,11 +1,9 @@
 package org.mql.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,8 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +30,8 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private String username;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dateNaissance;
 	@ManyToOne
 	private Adresse adresse;
 	@OneToOne(mappedBy = "adminRestau")

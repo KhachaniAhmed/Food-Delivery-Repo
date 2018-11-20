@@ -22,14 +22,12 @@ public class PlateImpl implements IPlateMetier {
 
 	@Override
 	public Plate getPlateById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return plateRepository.findById(id).get();
 	}
 
 	@Override
 	public void deletePlate(Long id) {
-		// TODO Auto-generated method stub
-
+		plateRepository.deleteById(id);
 	}
 
 	@Override
@@ -41,6 +39,17 @@ public class PlateImpl implements IPlateMetier {
 	@Override
 	public List<Plate> getAllPlates() {
 		return plateRepository.findAll();
+	}
+ 
+	@Override
+	public Plate plateBynom(String nom) {
+		// TODO Auto-generated method stub
+		return plateRepository.findPlateByNom(nom);
+	}
+
+	@Override
+	public List<Plate> findByMenuId(Long idMenu) {
+		return plateRepository.findByMenuId(idMenu);
 	}
 
 }

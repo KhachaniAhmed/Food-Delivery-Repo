@@ -1,5 +1,17 @@
 package org.mql.metier;
 
-public interface IVilleMetier {
+import java.util.List;
 
+import org.mql.entities.Ville;
+
+public interface IVilleMetier {
+	public List<Ville> getAllVilles();
+
+	public Ville vileByNom(String nom);
+
+	public Ville villeById(Long id);
+
+	public void saveVille(Ville ville);
+
+	public List<Ville> getAllViles();
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Restaurant</title>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid"></div>
+	</nav>
+	<!-- 	<form th:action="@{saveVilleAndQuartier}" method="post"></form> -->
+	
+	<div class="col col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">Menu & Plates:</div>
+			<div class="form-group panel-body">
+				<form th:action="@{saveMenuAndPlate}" method="post">
+					<span class="label label-danger">Menu</span> <select
+						class="form-control" name="nomMenu">
+						<option th:each="m:${menus}" th:value="${m.nom}"
+							th:utext="${m.nom}"></option>
+					</select>
+					<span class="label label-success">Plate</span> <input
+						type="text" name="nomPlate" class="form-control" />
+							<span class="label label-warning">Prix</span> <input
+						type="text" name="prix" class="form-control" />
+					<button class="glyphicon glyphicon-ok-circle btn btn-success"
+						type="submit"></button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

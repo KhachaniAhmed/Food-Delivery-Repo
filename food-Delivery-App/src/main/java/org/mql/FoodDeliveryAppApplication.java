@@ -1,8 +1,16 @@
 package org.mql;
 
-import org.mql.entities.Role;
-import org.mql.entities.User;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.mql.entities.Commande;
+import org.mql.entities.Plate;
 import org.mql.metier.IAccountMetier;
+import org.mql.metier.IMenuMetier;
+import org.mql.metier.IPlateMetier;
+import org.mql.metier.IRestaurantMetier;
+import org.mql.metier.IUserMetier;
+import org.mql.metier.IVilleMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +23,25 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class FoodDeliveryAppApplication implements CommandLineRunner {
 	@Autowired
 	private IAccountMetier accountMetier;
+	@Autowired
+	private IRestaurantMetier iRestaurantMetier;
+	@Autowired
+	private IMenuMetier iMenuMetier;
+	@Autowired
+	private IUserMetier iUserMetier;
+	@Autowired
+	private IVilleMetier iVilleMetier;
+	@Autowired
+	IPlateMetier iPlateMetier;
 
+	List<Commande> commandes = new ArrayList<>();
+	List<Plate> plates = new ArrayList<>();
+
+	// private IVilleMetier iVilleMetier;
+//	@Autowired
+//	private IQuartierMetier iQuartierMetier;
+//	@Autowired
+//	private IMenuMetier iMenuMetier;
 	public static void main(String[] args) {
 		SpringApplication.run(FoodDeliveryAppApplication.class, args);
 	}
@@ -34,6 +60,23 @@ public class FoodDeliveryAppApplication implements CommandLineRunner {
 //		accountMetier.addRoleToUser("admin", "ADMIN");
 //		accountMetier.addRoleToUser("admin", "USER");
 //		accountMetier.addRoleToUser("user", "USER");
+		// System.out.println("^^^^^^"+plates);
+//		Stream.of("Khemisset", "Tanger", "Tetouan", "Casablanca", "Merrakech", "Benimelall").forEach(v -> {
+//			iVilleMetier.saveVille(new Ville(null, v));
+//
+//		});
+//		Stream.of("Fretoure").forEach(m -> {
+//		iMenuMetier.saveMenu(new Menu(null, m));
+//
+//		});
+//		
+//	
+//	Stream.of("Tacos","Jondola","PoisonsRestau").forEach(r -> {
+//		iRestaurantMetier.addRestaurant(new Restaurant(null, r));
+//	});
+//Stream.of("sardina","chrana","gamba").forEach(p -> {
+//	iPlateMetier.saveplate(new Plate(null, p, null, null, null));
+//});
 
 	}
 

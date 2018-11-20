@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Restaurant</title>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid"></div>
+	</nav>
+	<!-- 	<form th:action="@{saveVilleAndQuartier}" method="post"></form> -->
+	
+	
+	
+	
+	<div class="col col-md-6">
+		<div class="panel panel-success">
+			<div class="panel-heading">Plate & PlateItem:</div>
+			<div class="form-group panel-body">
+				<form th:action="@{savePlateItem}" method="post">
+					<!-- 					<div class="form-group"> -->
+					<!-- 						<span class="label label-info">Nom restaurant:</span> <input -->
+					<!-- 							type="text" name="nom" class="form-control" /> -->
+					<!-- 					</div> -->
+
+					<!-- 					<span class="label label-default">Adress information</span>  -->
+					<!-- 					 <input type="text" name="infoAdresse" class="form-control" />  -->
+					<span class="label label-danger">Menu</span> <select
+						class="form-control" name="nomMenu">
+						<option th:each="m:${menus}" th:value="${m.nom}"
+							th:utext="${m.nom}"></option>
+					</select>
+					<span class="label label-danger">Plates</span> <select
+						class="form-control" name="nomPlate">
+						<option th:each="p:${plates}" th:value="${p.nom}"
+							th:utext="${p.nom}"></option>
+					</select>
+					<!-- 						<input type="text" -->
+					<!-- 						name="nom" class="form-control" /> -->
+					
+					<span class="label label-success">PltesItems</span> <input
+						type="text" name="nomPlateItem" class="form-control" />
+						<span class="label label-warning">Prix</span> <input
+						type="text" name="prix" class="form-control" />
+						<span class="label label-warning">cuisine</span> <input
+						type="text" name="nomCuisine" class="form-control" />
+					<button class="glyphicon glyphicon-ok-circle btn btn-success"
+						type="submit"></button>
+				</form>
+				<div>
+				
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

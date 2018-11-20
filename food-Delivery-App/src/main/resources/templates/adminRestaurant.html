@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+<meta charset="utf-8">
+<title>Restaurant</title>
+
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid"></div>
+	</nav>
+	<!-- 	partie info Restaurant -->
+	<div class="col col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">Informations sur Retaurant</div>
+			<div class="panel-body">
+				<form th:action="@{saveInfoRestaurant}" method="post">
+					<div class="form-group">
+						<span class="label label-info">Nom Restaurant:</span> <input
+							type="text" name="nomRestaurant" class="form-control" />
+						<button class="glyphicon glyphicon-ok-circle btn btn-success"
+							type="submit"></button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--    partie Adresse -->
+	<!-- 	<div class="col col-md-4"> -->
+	<!-- 		<div class="panel panel-success"> -->
+	<!-- 			<div class="panel-heading">Adress du restaurant:</div> -->
+	<!-- 			<div class="form-group panel-body"> -->
+	<!-- 				<form th:action="@{saveVilleAndQuartier}" method="post"> -->
+	<!-- 					<span class="label label-danger">Ville</span> <select -->
+	<!-- 						class="form-control" name="nomVille"> -->
+	<!-- 						<option th:each="v:${villes}" th:value="${v.nom}" -->
+	<!-- 							th:utext="${v.nom}"></option> -->
+	<!-- 					</select> -->
+	<!-- 											<input type="text" -->
+	<!-- 											name="nom" class="form-control" /> -->
+	<!-- 					<span class="label label-success">Quartier</span> <input -->
+	<!-- 						type="text" name="nomQuartier" class="form-control" /> -->
+	<!-- 					<button class="glyphicon glyphicon-ok-circle btn btn-success" -->
+	<!-- 						type="submit"></button> -->
+	<!-- 				</form> -->
+	<!-- 			</div> -->
+	<!-- 		</div> -->
+	<!-- 		<!-- 			autre div -->
+	-->
+	<!-- 	</div> -->
+<!-- 	partie adresse -->
+	<div class="col col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">Adress du restaurant:</div>
+			<div class="form-group panel-body">
+				<form th:action="@{quartierByVille}" method="post">
+					<span class="label label-danger">Ville</span> <select
+						class="form-control" name="villeForm">
+						<option selected="selected" th:utext="${valueSelected}">
+						</option>
+						<option th:each="v:${villes}" th:value="${v.nom}"
+							th:utext="${v.nom}"></option>
+					</select>
+					<button class="glyphicon glyphicon-ok-circle btn btn-success"
+						type="submit"></button>
+				</form>
+			</div>
+			<form th:action="@{saveAdresse}" method="post">
+				<div th:if="${villeSelected}">
+					<span class="label label-danger">Quartier</span> <select
+						class="form-control" name="nomQuartier">
+						<option th:each="v:${quartiers}" th:value="${v.id}"
+							th:utext="${v.nom}"></option>
+					</select>
+					<button class="glyphicon glyphicon-ok-circle btn btn-success"
+						type="submit"></button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="col col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">Votre Menu</div>
+			<div class="panel-body">
+				<span class="label label-warning">Menu Préparer</span> <input
+					type="text" name="" class="form-control" />
+			</div>
+		</div>
+		<div class="panel panel-success">
+			<div class="panel-heading">Plats asocier</div>
+			<div class="panel-body">
+				<span class="label label-warning">Nom du plat</span> <input
+					type="text" name="nom" class="form-control" /> <span
+					class="label label-warning">Prix totale du plat</span> <input
+					type="text" name="prix" class="form-control" />
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
