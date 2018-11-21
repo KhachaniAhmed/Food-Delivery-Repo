@@ -48,8 +48,8 @@ public class PlateImpl implements IPlateMetier {
 	}
 
 	@Override
-	public List<Plate> findByMenuId(Long idMenu) {
-		return plateRepository.findByMenuId(idMenu);
+	public List<Plate> plateByMenu(Long id) {
+		return plateRepository.rerchercheParNom(id);
 	}
 
 }

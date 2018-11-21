@@ -3,7 +3,9 @@ package org.mql.dao;
 
 import java.util.List;
 
+import org.mql.entities.Adresse;
 import org.mql.entities.Menu;
+import org.mql.entities.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,12 +15,9 @@ import org.springframework.data.repository.query.Param;
 public interface MenuRepository extends JpaRepository<Menu, Long> {
 
 	public Menu findByNom(String nom);
-	@Query("select r from Menu r where r.restaurant.id=:x")
+	@Query("select m from Menu m where m.restaurant.id=:x")
 	public List<Menu> rerchercheParId(@Param("x")Long id);
-	
-
-
-	public Menu findByRestaurantId(Long idRestaurant);
+	//public Menu findByRestaurantId(Long id);
 
 
 }

@@ -32,11 +32,7 @@ public class MenuImpl implements IMenuMetier {
 		return menuRepository.getOne(id);
 	}
 
-	@Override
-	public List<Menu> getMenuByRestaurant(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public void saveMenu(Menu menu) {
@@ -54,6 +50,18 @@ public class MenuImpl implements IMenuMetier {
 	public void deleteMenu(Long id) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<Menu> getMenuByRestau(Long id) {
+		// TODO Auto-generated method stub
+		return menuRepository.rerchercheParId(id);
+	}
+
+	@Override
+	public Menu getMenuByRestaurant(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

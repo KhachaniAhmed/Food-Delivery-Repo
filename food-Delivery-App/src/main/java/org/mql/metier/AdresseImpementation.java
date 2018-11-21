@@ -1,5 +1,7 @@
 package org.mql.metier;
 
+import java.util.List;
+
 import org.mql.dao.AdresseRepository;
 import org.mql.entities.Adresse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class AdresseImpementation implements IAdresseMetier {
 	}
 
 	@Override
-	public Adresse adresseByQuartier(Long id) {
+	public List<Adresse> adresseByQuartier(Long id) {
 		return adresseRepository.findByQuartier(id);
 	}
 

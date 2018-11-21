@@ -43,22 +43,8 @@
 					<h4 class="modal-title" id="exampleModalLabel">New message</h4>
 				</div>
 				<div class="modal-body">
-					<!-- 					<p th:each="menu:${menus}" th:text="${menu.nom}"> -->
-					<!-- 					<p th:each="plate:${plates}" th:text="${plate.nom}"> -->
-					<table class="table container">
-						<thead>
-							<tr>
-								<td>Nom</td>
-								<td>Prix</td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="pl:${menus}">
-								<td th:text="${pl.nom}"></td>
-								<td><a type="button" class="btn btn-primary">+</a></td>
-							</tr>
-						</tbody>
-					</table>
+					<p th:each="menu:${menus}" th:text="${menu.nom}">
+					<p th:each="plate:${plates}" th:text="${plate.nom}">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -67,65 +53,35 @@
 			</div>
 		</div>
 	</div>
-	<div class="col col-md-4">
-		<div class="panel panel-success">
-			<div class="panel-heading">Adress du restaurant:</div>
-			<div class="form-group panel-body">
-				<form th:action="@{commande/quartierByVille}" method="post">
-					<span class="label label-danger">Ville</span> <select
-						class="form-control" name="villeForm">
-						<option selected="selected" th:utext="${valueSelected}">
-						</option>
-						<option th:each="v:${villes}" th:value="${v.nom}"
-							th:utext="${v.nom}"></option>
-					</select>
-					<button class="glyphicon glyphicon-ok-circle btn btn-success"
-						type="submit"></button>
-				</form>
-			</div>
-			<div th:if="${villeSelected}">
-				<form th:action="@{commande/saveAdresse}" method="post">
-					<span class="label label-danger">Quartier</span> <select
-						class="form-control" name="nomQuartier">
-						<option th:each="v:${quartiers}" th:value="${v.id}"
-							th:utext="${v.nom}"></option>
-					</select>
-					<button class="glyphicon glyphicon-ok-circle btn btn-success"
-						type="submit"></button>
-				</form>
-				<!-- 				<form th:action="@{commande/plates}" method="post"> -->
-				<!-- 					<button class="glyphicon glyphicon-ok-circle btn btn-success" -->
-				<!-- 						type="submit"></button> -->
-				<!-- 				</form> -->
-			</div>
-		</div>
-	</div>
-
+	
 
 	<div class="col col-md-4">
 		<div th:if="${adresseSelected}">
 			<div class="panel panel-success">
 				<div class="panel-heading">Restaurant choisi:</div>
 				<div class="form-group panel-body">
-					<p th:each="menu:${menus}" th:text="${menu.nom}">
+				<p th:each="menu:${menus}" th:text="${menu.nom}">
 					<p th:each="plate:${plates}" th:text="${plate.nom}">
 					<table class="table container">
 						<thead>
 							<tr>
 								<th>Id</th>
 								<th>Nom</th>
+								<th>Prix</th>
+								<th>Pagnier</th>
 							</tr>
 						</thead>
 						<tbody>
+						
+							<tr th:each="p:${plates}">
+								<td th:text="${p.id}"></td>
+								<td th:text="${p.nom}"></td>
+								<td th:text="${p.prix}"></td>
+								<td><a type="button"
+									class="glyphicon glyphicon-couverts btn btn-success"
+									data-toggle="modal" data-target="#exampleModal"
+									data-whatever="@getbootstrap">Ajouter au pagnier</a></td>
 
-							<tr th:each="c:${restaurants}">
-								<td th:text="${c.id}"></td>
-								<td th:text="${c.nom}"></td>
-								<td th:text="${c.menu.nom}"></td>
-								<td><p th:each="menu:${menus}" th:text="${menu.nom}"></p></td>
-								<td><a th:href="@{commande/Menu/}+${c.id}"
-									class="glyphicon glyphicon-couverts btn btn-success">Voir
-										Menu</a></td>
 							</tr>
 
 						</tbody>

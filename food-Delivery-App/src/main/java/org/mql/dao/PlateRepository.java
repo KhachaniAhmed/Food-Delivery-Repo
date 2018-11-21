@@ -8,13 +8,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface PlateRepository extends JpaRepository<Plate, Long> {
-
 	@Query("select m from Plate m where m.menu.id=:x")
-	public List<Plate> rerchercheParNom(@Param("x")Long id);
+	public List<Plate> rerchercheParNom(@Param("x") Long id);
 	public Plate findPlateByNom(String nom);
-
-
 	public List<Plate> findByMenuId(Long idMenu);
-
 
 }

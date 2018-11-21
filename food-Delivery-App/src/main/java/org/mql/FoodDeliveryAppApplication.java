@@ -66,6 +66,8 @@ public class FoodDeliveryAppApplication implements CommandLineRunner {
 //
 //		});
 //		
+		
+		
 //	
 //	Stream.of("Tacos","Jondola","PoisonsRestau").forEach(r -> {
 //		iRestaurantMetier.addRestaurant(new Restaurant(null, r));

@@ -33,7 +33,7 @@ public class Restaurant implements Serializable {
 	private List<Commande> commandes=new ArrayList<>();
 	@OneToOne
 	private Adresse adresse;
-	@OneToOne(mappedBy = "restaurant")
+	@OneToOne(mappedBy = "restaurant",fetch=FetchType.EAGER)
 	private Menu menu;
 	public Restaurant(Long id, String nom) {
 		super();

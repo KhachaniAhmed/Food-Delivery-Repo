@@ -14,22 +14,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- 	<form th:action="@{cuisines}" method="post"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="form-group"> -->
-<!-- 				<input type="text" name="nom" /> -->
-<!-- 				<button type="submit" class="btn btn-primary">save</button> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</form> -->
-<select>
-<option th:each="p:${plates}" th:value="${p.id}"
-
-th:utext="${p.nom}">
-
-</option>
-
-</select>
 	<table class="table container">
 		<thead>
 			<tr>
@@ -43,9 +27,9 @@ th:utext="${p.nom}">
 				<td th:text="${p.id}"></td>
 				<td th:text="${p.nom}"></td>
 				<td th:text="${p.prix}"></td>
-<!-- 				<td><a th:href="@{cuisines/}+${c.id}">Edit</a></td> -->
-<!-- 				<td><a th:href="@{cuisines/delete/}+${c.id}">Delete</a></td> -->
-				<!-- 				<td th:href="@{cuisines/${c.id})">edit</td> -->
+				<td><a th:href="@{~/commande/PlateItem/}+${p.id}"
+									class="glyphicon glyphicon-couverts btn btn-success">Voir
+										PlateItem</a></td>
 			</tr>
 		</tbody>
 	</table>

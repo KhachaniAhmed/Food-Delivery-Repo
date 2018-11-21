@@ -42,7 +42,7 @@ public class RestaurantContr {
 	private IRestaurantMetier iRestaurantMetier;
 	@Autowired
 	private IPlateMetier iPlateMetier;
-
+//
 	@RequestMapping(value = "/adminRestaurant", method = { RequestMethod.GET, RequestMethod.POST })
 	public String saveUser(Model model, User user, Ville ville, Adresse adresse, Quartier quartier,
 			Restaurant restaurant) {
@@ -67,21 +67,21 @@ public class RestaurantContr {
 		return "adminRestaurant";
 	}
 
-	@RequestMapping(value = "/saveAdresse", method = { RequestMethod.GET, RequestMethod.POST })
-	public String saveAdresse(Model model, String nomQuartier) {
-		if (nomQuartier != null)
-			this.quartier = iQuartierMetier.getQuartierById(Long.parseLong(nomQuartier));
-		this.quartier.setVille(this.ville);
-		this.adresse.setQuartier(this.quartier);
-
-		iAdresseMetier.saveAdresse(new Adresse(null, null, this.quartier));
-		Adresse adresseRest = iAdresseMetier.adresseByQuartier(this.quartier.getId());
-		System.out.println("*********************" + adresseRest.getId());
-		iRestaurantMetier.addRestaurant(new Restaurant(null, this.restaurant.getNom(), null, null, adresseRest, null));
-		List<Ville> villes = iVilleMetier.getAllVilles();
-		model.addAttribute("villes", villes);
-		return "adminRestaurant";
-	}
+//	@RequestMapping(value = "/saveAdresse", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String saveAdresse(Model model, String nomQuartier) {
+//		if (nomQuartier != null)
+//			this.quartier = iQuartierMetier.getQuartierById(Long.parseLong(nomQuartier));
+//		this.quartier.setVille(this.ville);
+//		this.adresse.setQuartier(this.quartier);
+//
+//		iAdresseMetier.saveAdresse(new Adresse(null, null, this.quartier));
+//		Adresse adresseRest = iAdresseMetier.adresseByQuartier(this.quartier.getId());
+//		System.out.println("*********************" + adresseRest.getId());
+//		iRestaurantMetier.addRestaurant(new Restaurant(null, this.restaurant.getNom(), null, null, adresseRest, null));
+//		List<Ville> villes = iVilleMetier.getAllVilles();
+//		model.addAttribute("villes", villes);
+//		return "adminRestaurant";
+//	}
 
 	@RequestMapping(value = "/menuPlate", method = { RequestMethod.GET, RequestMethod.POST })
 	public String saveUser(Model model, Menu menu) {

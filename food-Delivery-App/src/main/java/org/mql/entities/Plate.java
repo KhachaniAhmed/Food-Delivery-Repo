@@ -26,7 +26,7 @@ public class Plate implements Serializable {
 	private Double prix;
 	@ManyToOne
 	private Menu menu;
-	@OneToMany(mappedBy = "plate")
+	@OneToMany(mappedBy = "plate", fetch=FetchType.EAGER)
 	private List<PlateItem> plateItmes;
 
 }

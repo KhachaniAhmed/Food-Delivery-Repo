@@ -1,0 +1,34 @@
+<!DOCTYPE  >
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+   <table class="table container">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nom</th>
+				<th>Prix</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p:${plateItems}">
+				<td th:text="${p.id}"></td>
+				<td th:text="${p.nom}"></td>
+				<td th:text="${p.prix}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
