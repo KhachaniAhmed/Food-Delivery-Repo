@@ -14,15 +14,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class PlateItemImpl implements IPlateItemMetier {
-@Autowired
-private PlateItemRepository plateItemRepository;
-@Autowired
-private CuisineRepository cuisineRepository;
-
+	@Autowired
+	private PlateItemRepository plateItemRepository;
+	@Autowired
+	private CuisineRepository cuisineRepository;
 
 	@Override
 	public void saveplateItem(PlateItem plate) {
-		
+
 		plateItemRepository.save(plate);
 	}
 
@@ -35,13 +34,13 @@ private CuisineRepository cuisineRepository;
 	@Override
 	public void deletePlateItem(Long id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void updatePlateItem(Long id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -57,12 +56,14 @@ private CuisineRepository cuisineRepository;
 	}
 
 	@Override
-	public PlateItem plateItemByNom(String nom) {
+	public PlateItem plateItemById(Long id) {
 		// TODO Auto-generated method stub
-		return plateItemRepository.findByNom(nom);
+		return plateItemRepository.getOne(id);
 	}
 
-	
-
+	@Override
+	public void deletePlateitems() {
+		this.cuisineRepository.deleteAll();
+	}
 
 }

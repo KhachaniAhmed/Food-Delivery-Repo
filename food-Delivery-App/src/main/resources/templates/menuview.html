@@ -86,6 +86,13 @@
 
 						</tbody>
 					</table>
+						<ul class="nav nav-pills">
+			<li th:each="pa,status:${pages}"
+				th:class="${pagedef}==${status.index}?'active':''"><a
+				th:href="@{index(page=${status.index},size=${size},motCle=${motCle})}"
+				th:text="${status.index}"></a></li>
+		</ul>
+	</div>
 				</div>
 			</div>
 		</div>

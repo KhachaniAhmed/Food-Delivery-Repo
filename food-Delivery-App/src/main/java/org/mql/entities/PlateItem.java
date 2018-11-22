@@ -6,6 +6,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
+
+import org.springframework.data.annotation.Persistent;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,6 +29,8 @@ public class PlateItem implements Serializable {
 	private Cuisine cuisine;
 	@ManyToOne
 	private Plate plate;
+	@Transient
+	private int quantite;
 
 	
    }

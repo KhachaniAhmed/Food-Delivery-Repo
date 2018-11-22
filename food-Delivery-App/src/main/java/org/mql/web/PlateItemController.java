@@ -33,26 +33,26 @@ public class PlateItemController {
 	@Autowired
 	private IMenuMetier iMenuMetier;
 
-	@RequestMapping(value = "/savePlateItem", method = { RequestMethod.GET, RequestMethod.POST })
-	public String savePlateItemByPlate(Model model, @RequestParam String nomPlate, @RequestParam String nomPlateItem,
-			@RequestParam double prix, @RequestParam String nomCuisine, @RequestParam String nomMenu) {
-		System.out.println("***************" + nomPlateItem);
-		System.out.println("***************" + nomPlate);
-
-		Menu menu = iMenuMetier.menuByNom(nomMenu);
-
-		Cuisine cuisine = new Cuisine(null, nomCuisine);
-		iCuisineMetier.addCuisine(cuisine);
-		Cuisine cuisine1 = iCuisineMetier.cuisineByNom(nomCuisine);
-		Plate plate = new Plate(null, nomPlate, prix, menu, null);
-		Plate plate1 = iPlateMetier.plateBynom(nomPlate);
-
-		iPlateItemMetier.saveplateItem(new PlateItem(null, prix, nomPlateItem, cuisine, plate1));
-		PlateItem plateItem = iPlateItemMetier.plateItemByNom(nomPlateItem);
-
-		List<Plate> plates = iPlateMetier.getAllPlates();
-		model.addAttribute("plates", plates);
-		// System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmm"+plate);
-		return "plateMenu";
-	}
+//	@RequestMapping(value = "/savePlateItem", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String savePlateItemByPlate(Model model, @RequestParam String nomPlate, @RequestParam String nomPlateItem,
+//			@RequestParam double prix, @RequestParam String nomCuisine, @RequestParam String nomMenu) {
+//		System.out.println("***************" + nomPlateItem);
+//		System.out.println("***************" + nomPlate);
+//
+//		Menu menu = iMenuMetier.menuByNom(nomMenu);
+//
+//		Cuisine cuisine = new Cuisine(null, nomCuisine);
+//		iCuisineMetier.addCuisine(cuisine);
+//		Cuisine cuisine1 = iCuisineMetier.cuisineByNom(nomCuisine);
+//		Plate plate = new Plate(null, nomPlate, prix, menu, null);
+//		Plate plate1 = iPlateMetier.plateBynom(nomPlate);
+//
+//		iPlateItemMetier.saveplateItem(new PlateItem(null, prix, nomPlateItem, cuisine, plate1));
+//		PlateItem plateItem = iPlateItemMetier.plateItemByNom(nomPlateItem);
+//
+//		List<Plate> plates = iPlateMetier.getAllPlates();
+//		model.addAttribute("plates", plates);
+//		// System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmmm"+plate);
+//		return "plateMenu";
+//	}
 }
