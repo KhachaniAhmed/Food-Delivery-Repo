@@ -34,17 +34,18 @@ public class AccountMetierImpl implements IAccountMetier {
 
 	@Override
 	public User findUserByUsername(String userName) {
-		return userRepository.findByUsername(userName);
+		User user = userRepository.findByUsername(userName);
+		return user;
 	}
 
 	@Override
 	public void addRoleToUser(String userName, String roleName) {
 		Role role = roleRepository.findByRoleName(roleName);
-     	User user = userRepository.findByUsername(userName);
-     	System.out.println("*****************************************");
-        System.out.println(role.toString());
-        System.out.println(user.toString());
-     	user.getRoles().add(role);
+		User user = userRepository.findByUsername(userName);
+		System.out.println("*****************************************");
+		System.out.println(role.toString());
+		System.out.println(user.toString());
+		user.getRoles().add(role);
 	}
 
 }

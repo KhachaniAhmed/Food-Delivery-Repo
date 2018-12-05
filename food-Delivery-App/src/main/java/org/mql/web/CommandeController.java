@@ -1,17 +1,24 @@
 package org.mql.web;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.mql.dao.MenuRepository;
 import org.mql.entities.Adresse;
+import org.mql.entities.Commande;
+import org.mql.entities.CommandeItem;
 import org.mql.entities.Menu;
 import org.mql.entities.Plate;
 import org.mql.entities.PlateItem;
 import org.mql.entities.Quartier;
 import org.mql.entities.Restaurant;
+import org.mql.entities.User;
 import org.mql.entities.Ville;
+import org.mql.metier.IAccountMetier;
 import org.mql.metier.IAdresseMetier;
+import org.mql.metier.ICommandeItemMetier;
+import org.mql.metier.ICommandeMetier;
 import org.mql.metier.IMenuMetier;
 import org.mql.metier.IPlateItemMetier;
 import org.mql.metier.IPlateMetier;
@@ -21,9 +28,9 @@ import org.mql.metier.IVilleMetier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +39,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "/commande")
 public class CommandeController {
+	private List<CommandeItem> commandeItems = new ArrayList<>();
+	private Commande commandeValider = new Commande();
+	private User user = new User();
 	private Restaurant restaurant = new Restaurant();
 	private Quartier quartier = new Quartier();
 	private Ville ville = new Ville();
@@ -52,6 +62,10 @@ public class CommandeController {
 	boolean plateItemExist = false;
 	PlateItem plateitemChoisi = new PlateItem();
 	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	IAccountMetier iAccountMetier;
+	@Autowired
 	private MenuRepository menuRepository;
 	@Autowired
 	private IMenuMetier iMenuMetier;
@@ -67,6 +81,11 @@ public class CommandeController {
 	private IPlateMetier iPlateMetier;
 	@Autowired
 	private IPlateItemMetier iPlateItemMetier;
+	@Autowired
+	private ICommandeMetier iCommandeMetier;
+	@Autowired
+	private ICommandeItemMetier iCommandeItemMetier;	
+	private static double prixTotale = 0d;
 
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public String acessUser(Model model) {
@@ -83,7 +102,7 @@ public class CommandeController {
 		this.valueSelected = "";
 		this.adresseSelected = false;
 		this.villeSelected = false;
-		return "adminRestaurant";
+		return "commande/adminRestaurant";
 	}
 
 	@RequestMapping(value = "/quartierByVille", method = { RequestMethod.GET, RequestMethod.POST })
@@ -120,7 +139,7 @@ public class CommandeController {
 	public String redirectMenu(Model model) {
 		model.addAttribute("menu", this.menu);
 		model.addAttribute("plates", this.plates);
-		return "voirMenu";
+		return "commande/voirMenu";
 	}
 
 	@RequestMapping(value = "Menu/{id}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -150,10 +169,9 @@ public class CommandeController {
 		model.addAttribute("plateItemCommander", this.plateItemCommander);
 		model.addAttribute("plateItems", this.plateItems);
 		model.addAttribute("PlateitemSelected", this.PlateitemSelected);
-		this.plateItemCommander.forEach(pateIem -> {
-			System.out.println(pateIem.getNom() + "totale des prix " + pateIem.getPrix());
-		});
-		return "voirPlateItem";
+		this.plateitemChoisi = new PlateItem();
+		this.plateItemExist = false;
+		return "commande/voirPlateItem";
 	}
 
 	@RequestMapping(value = "PlateItem/{id}", method = { RequestMethod.GET, RequestMethod.POST })
@@ -164,12 +182,11 @@ public class CommandeController {
 
 		return "redirect:/commande/menu/plateItem";
 	}
-	
+
 	@RequestMapping(value = "authorPlate", method = { RequestMethod.GET, RequestMethod.POST })
 	public String getPreviousPates() {
 		return "redirect:/commande/menu";
 	}
-
 
 	@RequestMapping(value = "/choicePLateItem", method = { RequestMethod.GET, RequestMethod.POST })
 	public String choicePLateItem(@RequestParam Long id, @RequestParam(name = "quantite") String quantite) {
@@ -201,7 +218,61 @@ public class CommandeController {
 		}
 		if (this.plateItemCommander != null)
 			this.PlateitemSelected = true;
+
 		return "redirect:/commande/menu/plateItem";
+	}
+
+	@RequestMapping(value = "validCommande", method = { RequestMethod.GET, RequestMethod.POST })
+	public String validCommande() {
+		return "redirect:/commande/login";
+	}
+
+	@RequestMapping(value = "login", method = { RequestMethod.GET, RequestMethod.POST })
+	public String getLoginPage() {
+		return "authentification/login";
+	}
+	@RequestMapping(value = "regesterView", method = { RequestMethod.GET, RequestMethod.POST })
+	public String getRegisterPage() {
+		return "authentification/regester";
+	}
+
+	@RequestMapping(value = "userSuccess", method = { RequestMethod.GET, RequestMethod.POST })
+	public String getRegesterPage() {
+		this.plateItemCommander.forEach(pateIem -> {
+			prixTotale += pateIem.getPrix();
+		});
+		System.out.println(this.user.getPassword());
+		this.commandeValider = iCommandeMetier
+				.addCommande(new Commande(null, prixTotale, new Date(), this.user, this.menu.getRestaurant(), null));
+		this.plateItemCommander.forEach(plateItem -> {
+			this.commandeItems.add(this.iCommandeItemMetier.addCommandeItem(new CommandeItem(null, plateItem.getPrix(),
+					plateItem.getQuantite(), plateItem, this.commandeValider)));
+		});
+		iCommandeMetier.addCommandeItem(this.commandeValider, this.commandeItems);
+		return "authentification/commandDone";
+	}
+
+	@RequestMapping(value = "connexion", method = { RequestMethod.GET, RequestMethod.POST })
+	public String getUserFromDb(Model model, @RequestParam String username, @RequestParam String password) {
+		this.user = iAccountMetier.findUserByUsername(username);
+		System.out.println("************" + password);
+		if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
+			model.addAttribute("user", user);
+			return "redirect:/commande/userSuccess";
+
+		} else {
+			System.out.println("user idefined");
+			return "authentification/login";
+		}
+	}
+
+
+	
+	@RequestMapping(value = "regesterUser", method = { RequestMethod.GET, RequestMethod.POST })
+	public String regesterUser(Model model, User user) {
+		user.setAdresse(null);
+		this.user=iAccountMetier.saveUser(user);
+		return "redirect:/commande/userSuccess";
 	}
 
 }

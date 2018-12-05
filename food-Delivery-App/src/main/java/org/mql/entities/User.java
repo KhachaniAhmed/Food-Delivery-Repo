@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	private String username;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "dd/MM/aaaa")
 	private Date dateNaissance;
 	@ManyToOne
 	private Adresse adresse;

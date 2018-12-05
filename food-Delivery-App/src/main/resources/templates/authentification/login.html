@@ -1,0 +1,34 @@
+<!DOCTYPE  >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+
+<meta charset="ISO-8859-1">
+<title>Valider votre commande</title>
+</head>
+<body>
+	<div class="col col-md-4">
+		<div class="panel panel-success">
+			<div class="panel-heading">Regester Data</div>
+			<div class="panel-body">
+				<form method="post" th:action="@{~/commande/connexion}">
+					<div class="form-group">
+						<label class="control-label">Username: </label> <input
+							class="form-control" type="text" name="username" required />
+					</div>
+					<div class="form-group">
+						<label class="control-label">Password: </label> <input
+							class="form-control" type="password" name="password" required />
+					</div>
+					<button class="btn btn-danger" type="submit">Login</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

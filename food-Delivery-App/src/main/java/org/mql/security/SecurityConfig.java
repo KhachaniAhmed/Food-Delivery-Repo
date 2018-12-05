@@ -22,22 +22,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// utilisateurs et les roles
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).
-		passwordEncoder(passwordEncoder);
+//		auth.userDetailsService(userDetailsService).
+//		passwordEncoder(passwordEncoder);
 
 	}
 
 	// dans cette méthode en va définir les droits d'acces et
 	// aussi dans cette methode qui on va decider d'ajouter des filtres ou pas
 	protected void configure(HttpSecurity http) throws Exception {
-		http.formLogin().
-     	loginPage("/login/login");
+		http.formLogin().disable();
+//     	loginPage("/login/login");
 //		http.authorizeRequests().antMatchers("/login", "/inscrir").permitAll();
 //      rederection vers les pages d'errors
 //		http.exceptionHandling().accessDeniedPage("403");
-		http.authorizeRequests().antMatchers("/cuisines/**").hasAuthority("ADMIN");
+//		http.authorizeRequests().antMatchers("/cuisines/**").hasAuthority("ADMIN");
 		//tous les rousources passe par une authentification  
-		http.authorizeRequests().anyRequest().authenticated();
+//		http.authorizeRequests().anyRequest().authenticated();
     
 	}
 

@@ -1,0 +1,46 @@
+<!DOCTYPE  >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" type="text/css" rel="stylesheet" />
+
+<meta charset="ISO-8859-1">
+<title>New User Commande</title>
+</head>
+<body>
+	<div class="col col-md-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading">Regester Data</div>
+			<div class="panel-body">
+				<form th:action="@{~/commande/regesterUser}" method="post">
+					<div class="form-group">
+						<label class="control-label">Username: </label> <input
+							class="form-control" type="text" name="username"  />
+					</div>
+					<div class="form-group">
+						<label class="control-label">email: </label> <input
+							class="form-control" type="text" name="email"  />
+					</div>
+					<div class="form-group">
+						<label class="control-label">dateNaissance: </label> <input
+							class="form-control" type="date" name="dateNaissance"  />
+					</div>
+					<div class="form-group">
+						<label class="control-label">Adresse: </label> <input
+							class="form-control" type="text" name="adresse"  />
+					</div>
+					<div class="form-group">
+						<label class="control-label">Password: </label> <input
+							class="form-control" type="password" name="password"  />
+					</div>
+					<button class="btn btn-success" type="submit" >Register</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
